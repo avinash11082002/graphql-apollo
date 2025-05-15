@@ -16,3 +16,63 @@ This project is a GraphQL server built using Node.js and Apollo Server, designed
 - GraphQL
 - npm
 - JavaScript
+
+Usage
+This GraphQL server uses a schema that defines types for authors, reviews, and games. You can execute queries and mutations to interact with the data.
+
+**GraphQL Queries**
+Here are a few examples of queries you can make:
+
+**Fetch all games:**
+
+query gamesQuery{
+  games {
+    id,
+    title,
+    platform
+  }
+}
+
+Fetch a single game by ID:
+
+graphql
+
+query gameQuery($id: ID!){
+  author(id: $id){
+    title,
+    platform,
+    reviews {
+      rating,
+      content
+    }
+  }
+}
+Mutations
+You can add and update data using mutations. Here are some examples:
+
+**Add a new game:**
+mutation addGame($title: String!, $platform: [String!]!){
+  addGame(title: $title, platform: $platform) {
+    id,
+    title,
+    platform
+  }
+}
+
+**Update an existing game:**
+mutation updateGame($id: ID!, $edits: EditGameInput!){
+  updateGame(id: $id, edits: $edits){
+    id,
+    title,
+    platform
+  }
+}
+
+**Delete a game:**
+mutation deleteGame($id: ID!){
+  deleteGame(id: $id) {
+    id,
+    title,
+    platform
+  }
+}
